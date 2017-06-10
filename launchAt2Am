@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+"""
+This script to running script or something every 2 am
+"""
+
+from crontab import CronTab
+
+myCron = CronTab(user='handry')
+
+job = myCron.new(command='uptime -p >> uptime.txt', comment='uptime')
+job.hour.on(2)
+
+myCron.write()
+
+for jb in myCron:
+	print jb
