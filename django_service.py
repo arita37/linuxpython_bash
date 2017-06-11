@@ -4,10 +4,9 @@ This script to manage django service like run, restart, stop, start, enable, dis
 exp : django-service run to running django service.
 """
 
-import subprocess
-import sys
+# import subprocess
+# import sys
 
-# this used when the linux use systemd
 # def run():
 # 	command = 'systemctl start djangorun.service'
 # 	process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
@@ -92,4 +91,76 @@ import sys
 
 
 
+# def getPID():
+# 	command = 'fuser 8000/tcp'
+# 	process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+# 	output, error = process.communicate()
+# 	result = output.split(' ')
+# 	servicePID = result[-1]
 
+# 	return servicePID
+
+
+# def killPID(pid):
+# 	commandKill = 'kill ' + pid
+# 	processKill = subprocess.Popen(commandKill.split(), stdout=subprocess.PIPE)
+# 	output, error = processKill.communicate()
+# 	result = 'Django service killed successfully'
+
+# 	return result
+
+# if getPID() == '':
+# 	msg = 'Django service not running'
+# 	print msg
+# 	quit()
+# else:
+# 	print killPID(getPID())
+
+
+import subprocess
+import sys
+import os
+
+def run():
+	command = './django_run.sh'
+	os.system(command)
+
+
+def getPID():
+	command = 'sudo netstat -nlp | grep :80'
+	# os.system(command)
+	output = subprocess.check_output(command, shell=True)
+	result = output.split()
+	result = result[-1]
+	result = result.split('/')
+	return result[0]
+
+
+def stop(pid):
+	command = 'sudo kill -9 ' + pid
+	os.system(command)
+	result = 'Django application stopped'
+
+	return result
+
+
+def restart(pid):
+	stop(pid)
+	run()
+
+
+# main program
+if sys.argv[1] == 'start':
+	run()
+elif sys.argv[1] == 'stop':
+	pid = getPID()
+	pid = str(pid)
+	stop(pid)
+elif sys.argv[1] == 'restart':
+	pid = getPID()
+	print stop(pid)
+	run()
+elif sys.argv[1] == 'pid':
+	getPID()
+else:
+	print 'You should use run, stop, restart'
