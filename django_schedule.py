@@ -8,9 +8,9 @@ from crontab import CronTab
 import sys
 
 def restart_daily():
-	myCron = CronTab(user='handry')
+	myCron = CronTab(user='noel')
 
-	job = myCron.new(command='systemctl restart djangorun.service', comment='restart-django-service')
+	job = myCron.new(command='sudo /home/noel/project27/scheduler/django_service.py restart', comment='restart-django-service')
 	job.hour.on(4)
 
 	myCron.write()
@@ -22,9 +22,8 @@ def restart_daily():
 def check_daily():
 	myCron = CronTab(user='handry')
 
-	job = myCron.new(command='django-check', comment='restart-django-service')
+	job = myCron.new(command='sudo /home/noel/project27/scheduler/django_check.py check', comment='check-django-service')
 	job.hour.on(5)
-	# job.minute.every(1)
 
 	myCron.write()	
 

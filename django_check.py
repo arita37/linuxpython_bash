@@ -17,7 +17,7 @@ second  = str(date.second)
 port = "80/tcp"
 
 def check():
-	command = 'fuser '+ port
+	command = 'sudo fuser '+ port
 	process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 	result = output.strip()
@@ -26,7 +26,7 @@ def check():
 
 
 def backup():
-	command = 'tar -zcvf /tmp/backup_' + year + month + day + hour + minute + second + '.tar.gz -P /home/noel/project27/'
+	command = 'tar -zcvf /home/noel/project27/backup/backup_' + year + month + day + hour + minute + second + '.tar.gz -P /home/noel/project27/geoapp/geoproject/'
 	process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 	result = 'Backup the django application'
