@@ -5,7 +5,7 @@ import sys
 class ssh:
 	client = None
 
-	def __init__(self, address, username, password):
+	def __init__(self, address, username, password, filename):
 		# Let the user know we're connecting to the server
 		print("Connecting to server.")
 		# Create a new SSH Client
@@ -13,7 +13,7 @@ class ssh:
 		# The following line is required if you want the script to be able to access a server that's not yet in the knows_hosts file
 		self.client.set_missing_host_key_policy(client.AutoAddPolicy())
 		# Make the connection
-		self.client.connect(address, username=username, password=password, look_for_keys=False)
+		self.client.connect(address, username=username, password=password, key_filename=filename)
 
    	def sendCommand(self, command):
    		if(self.client):
@@ -44,5 +44,5 @@ result = ' '.join(arg)
 # print result
 
 # change the ssh configuration as you wish
-connection = ssh("127.0.0.1", "handry", "vangke")
+connection = ssh("127.0.0.1", "handry", "vangke", 'id_rsa')
 connection.sendCommand(result)
