@@ -2,6 +2,9 @@
 """
 This script to manage django service like run, restart, stop, start, enable, disable service.
 exp : django-service run to running django service.
+
+django_service
+
 """
 
 # import subprocess
