@@ -89,4 +89,4 @@ elif arg == 'clear':
 elif arg == 'rule':
 	print show_rule()
 else:
-	print 'You should use "django-schedule restart, check, rule, clear and logs"'
+	print 'You should use "django-schedule.py restart, check, rule, clear and logs"'

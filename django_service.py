@@ -122,12 +122,12 @@ import sys
 import os
 
 def run():
-	command = './django_run.sh'
+	command = 'sudo ./django_run.sh'
 	os.system(command)
 
 
 def getPID():
-	command = 'sudo netstat -nlp | grep :80'
+	command = 'sudo netstat -nlp | grep :8080'
 	# os.system(command)
 	output = subprocess.check_output(command, shell=True)
 	result = output.split()
@@ -163,4 +163,4 @@ elif sys.argv[1] == 'restart':
 elif sys.argv[1] == 'pid':
 	getPID()
 else:
-	print 'You should use run, stop, restart'
+	print 'You should use start, stop, restart'
