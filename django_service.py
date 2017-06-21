@@ -130,7 +130,7 @@ def run():
 
 
 def getPID():
-	command = 'sudo netstat -nlp | grep :8080'
+	command = 'sudo netstat -nlp | grep :80'
 	# os.system(command)
 	output = subprocess.check_output(command, shell=True)
 	result = output.split()
