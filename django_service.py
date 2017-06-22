@@ -125,7 +125,7 @@ import sys
 import os
 
 def run():
-	command = 'sudo ./bash_cmd/django_run.sh'
+	command = 'sudo /home/noel/project27/scheduler/cmd_line/bash_cmd/django_run.sh'
 	os.system(command)
 
 
