@@ -12,7 +12,7 @@ import subprocess
 def restart_daily():
 	myCron = CronTab(user='noel')
 
-	job = myCron.new(command='sudo /home/noel/anaconda2/bin/python   /home/noel/project27/scheduler/cmd_line/django_service.py restart', comment='restart-django-service')
+	job = myCron.new(command='sudo /home/noel/anaconda2/bin/python /home/noel/project27/scheduler/cmd_line/django_service.py restart &', comment='restart-django-service')
 	job.minute.on(0)
 	job.hour.on(4)
 
@@ -25,7 +25,7 @@ def restart_daily():
 def check_daily():
 	myCron = CronTab(user='noel')
 
-	job = myCron.new(command='sudo /home/noel/anaconda2/bin/python    /home/noel/project27/scheduler/cmd_line/django_check.py check', comment='check-django-service')
+	job = myCron.new(command='sudo /home/noel/anaconda2/bin/python /home/noel/project27/scheduler/cmd_line/django_check.py check &', comment='check-django-service')
 	job.minute.on(0)
 	job.hour.on(5)
 
